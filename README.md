@@ -13,7 +13,7 @@
 
 ⸻
 
-🏗️ 2. Kiến trúc tổng thể
+🏗️ 2. Cấu trúc tổng thể
 
 📁 Models/
     ├─ Task.swift
