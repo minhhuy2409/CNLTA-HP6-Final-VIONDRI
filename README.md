@@ -1,106 +1,100 @@
-#  VIONDRI – Focused Productivity & Creative Workspace
+🧠 1. Ý tưởng & Tầm nhìn
 
-VIONDRI là một ứng dụng được phát triển bằng SwiftUI, được thiết kế để giúp người dùng duy trì sự tập trung, lên kế hoạch, ghi chú và làm việc sáng tạo trong một không gian cá nhân hoá. Ứng dụng lấy cảm hứng từ Notion, kết hợp với khả năng trang trí kéo-thả, tích hợp âm nhạc và bảng nháp để làm việc hiệu quả.
+🎯 Mục tiêu:
+	•	Tạo một không gian làm việc sáng tạo, tập trung, đẹp mắt, thay thế Notion/GG Keep cho học sinh, sinh viên, người làm việc độc lập.
+	•	Có timeline, to-do, draftboard, kết hợp âm nhạc giúp “vào flow”.
 
-⸻
-
-🎯 Mục Tiêu Học Tập (Learning Objectives – SwiftUI Học phần 5)
-
-I. Thành phần giao diện cơ bản và nâng cao (Components)
-    •    Image: hiển thị và tuỳ chỉnh hình ảnh.
-    •    TextField: tạo ô nhập liệu và liên kết dữ liệu bằng @State.
-    •    Slider, Toggle, Picker, ProgressView, Spacer.
-
-II. Tùy biến giao diện với Modifiers
-    •    Sử dụng .padding, .frame, .font, .foregroundColor, .background, .cornerRadius, .shadow…
-    •    Hiểu vai trò và thứ tự áp dụng modifiers.
-
-III. Xây dựng Custom Components (Custom Views)
-    •    Tạo View con như: PrimaryButton, TitleLabel…
-    •    Tái sử dụng logic và style giao diện.
-
-IV. Quản lý dữ liệu reactive với Property Wrappers
-    •    Sử dụng @State, @Binding, @ObservedObject, @Published, @EnvironmentObject.
-    •    Hiểu Source of Truth và cách giữ trạng thái khi View tái tạo.
-
-V. Kỹ thuật Reverse Engineering
-    •    Phân tích UI/UX của app mẫu, xác định model, view, logic.
-    •    Dựng lại cấu trúc bằng SwiftUI từ một app thực tế.
-
-VI. Làm việc với ForEach và List
-    •    Lặp dữ liệu xác định (Identifiable), tạo view con, hỗ trợ xóa/thêm mục.
-
-VII. Tổ chức ứng dụng với TabView
-    •    Sử dụng .tabItem, enum tag, quản lý tabs bằng selection.
-
-VIII. Thực hành tổng hợp
-    •    Thiết kế models, UI nhiều màn hình (To-do, Timetable, Note, Settings…)
-    •    Hiển thị có điều kiện, tương tác, định dạng dữ liệu.
+🔥 Khác biệt so với Notion:
+	•	Tối ưu thao tác chạm/kéo-thả cho iOS/iPadOS
+	•	Giao diện tối giản + cảm xúc (màu, nhạc, sticker, theme)
+	•	Có “draftboard” như bảng nháp tự do
+	•	Kết nối Apple Music/Spotify dễ dàng
+	•	Gợi ý phương pháp học/làm việc theo chiến lược (Strategy)
 
 ⸻
 
-🧱 Kiến Trúc & Thành phần chính của VIONDRI
+🏗️ 2. Kiến trúc tổng thể
 
-📁 Models
-    •    Task: Quản lý mục tiêu/to-do cá nhân.
-    •    Note: Ghi chú tự do trong lúc làm việc.
-    •    ScheduleItem: Thời khoá biểu theo ngày/tuần.
-    •    MusicSetting: Tùy chọn kết nối Spotify/Apple Music.
+📁 Models/
+    ├─ Task.swift
+    ├─ DraftElement.swift
+    ├─ Strategy.swift
+    ├─ User.swift
+    ├─ Song.swift, Playlist.swift
+    ├─ Theme.swift
+    └─ AppState.swift
 
-📁 Views
-    •    MainTabView: Giao diện chính với TabView.
-    •    ToDoView, TimetableView, NoteBoardView, FocusMusicView, SettingsView
+📁 Views/
+    ├─ MainTabView.swift
+    ├─ PlannerView.swift
+    ├─ DraftboardView.swift
+    ├─ MusicView.swift
+    ├─ ProfileView.swift
+    └─ Subfolders/: Planner/, Draftboard/, Music/, Profile/
 
-📁 Components
-    •    TaskCardView, AddNoteView, TimetableCell, PrimaryButton, MusicConnectBox
+📁 Components/
+    ├─ TaskCard.swift
+    ├─ StrategyCard.swift
+    ├─ ThemePreviewTile.swift
+    ├─ VinylDiscView.swift
+    ├─ ProfileCard.swift
+    ├─ EmojiSticker.swift
+    └─ ToolbarButton.swift
 
-📁 ViewModels
-    •    TaskManager, NoteManager, ScheduleManager: Quản lý trạng thái tập trung thông qua ObservableObject.
+📁 Data/
+    ├─ TaskData.swift
+    ├─ StrategyData.swift
+    ├─ StickerLibrary.swift
+    ├─ MusicSampleData.swift
+    └─ FriendListData.swift
+
+🛠️ 3. Các tính năng MVP (Minimum Viable Product)
+
+📅 PLANNER VIEW
+	•	Hiển thị to-do theo ngày, có thể kéo-thả thay đổi thứ tự
+	•	Thêm/sửa/xoá Task
+	•	Deadline highlight + nhắc nhở
+	•	Gắn màu/nhãn/emoji cho task
+	•	Bộ lọc theo priority, category
+
+🎨 DRAFTBOARD VIEW
+	•	Kéo-thả sticker, note, hình ảnh
+	•	Ghi chú text tự do (drag/resize)
+	•	Giao diện như bảng trắng (zoom/pan nhẹ)
+	•	Gợi ý theo chiến lược học tập (liên kết với Strategy)
+
+🎧 MUSIC VIEW
+	•	Hiển thị bài hát, playlist mẫu
+	•	Giao diện vinyl/CD quay
+	•	Kết nối Spotify / Apple Music API
+	•	Điều khiển nhạc + lưu playlist cá nhân
+
+🧠 STRATEGY SYSTEM
+	•	Hiển thị các chiến lược học/làm việc hiệu quả
+	•	Chọn chiến lược áp dụng cho tuần/tháng
+	•	Tích hợp nhắc nhở/gợi ý vào planner/draftboard
+	•	Gợi ý task layout theo từng strategy (eg. Pomodoro, Deep Work)
+
+👤 PROFILE VIEW
+	•	Thông tin cá nhân (avatar, tên, email…)
+	•	Chọn theme, sticker yêu thích
+	•	Giao diện “Profile Card” đẹp mắt chia sẻ được
+	•	Giao diện setting cho chiến lược ưa thích
 
 ⸻
 
-✅ MVP – Minimum Viable Product
-    1.    Tạo/lưu To-do và đánh dấu hoàn thành.
-    2.    Hiển thị thời khoá biểu theo ngày.
-    3.    Ghi chú nhanh (bảng nháp khi học).
-    4.    Giao diện tabbar với icon và điều hướng.
-    5.    Kết nối với Spotify hoặc Apple Music (mock ban đầu).
+🧩 4. Tính năng bổ sung sau MVP
+	•	iCloud sync hoặc local persistence (CoreData/UserDefaults)
+	•	Widget nhỏ hiển thị task/draft
+	•	Chế độ Focus: Tạm ẩn distractor, mở nhạc
+	•	Tính năng bạn bè: Thêm bạn, xem chiến lược của nhau
+	•	Chế độ học nhóm (beta)
 
 ⸻
 
-🧠 Kiến Thức Đã Áp Dụng
-    •    State Management nâng cao: @State, @Binding, @ObservedObject.
-    •    Modular UI với View con tái sử dụng.
-    •    Kết hợp layout linh hoạt bằng VStack, HStack, ZStack, Spacer.
-    •    Dữ liệu động với ForEach + Identifiable.
-    •    UI/UX tối giản, dễ thao tác và mượt mà trên iOS.
-
-⸻
-
-📚 Tài Nguyên & Gợi Ý
-    •    Figma/Sketch: Thiết kế wireframe.
-    •    Git: Theo dõi tiến độ phát triển app.
-    •    Swift Playgrounds / Xcode Preview: Test UI component.
-
-⸻
-
-💬 Gợi Ý Slogan
-
-“VIONDRI – Create. Plan. Focus. Flow.”
-
-“Your private space for powerful productivity.”
-
-⸻
-
-🧩 Phiên bản tương lai (V2.0 trở đi)
-    •    Drag & drop trang trí cho bảng nháp.
-    •    Nhắc lịch học/làm việc theo thói quen.
-    •    Hệ thống thống kê thời gian làm việc.
-    •    Cloud Sync & Đăng nhập tài khoản.
-
-⸻
-
-✨ Made with SwiftUI – by [Tăng Hoàng Minh Huy]
-
-App được xây dựng từ nền móng vững chắc, với từng bước học tập – thiết kế – phát triển rõ ràng, hướng đến trải nghiệm người dùng và chất lượng code cao nhất.
-
+✨ 5. Thiết kế giao diện (UI/UX)
+	•	Style: Minimalist + Creative
+	•	Màu: tông pastel, gradient nhẹ
+	•	Font: Rounded, dễ đọc (San Francisco Rounded, Avenir)
+	•	Component có: Shadow, bo góc 2xl, animation mượt (Framer Motion hoặc SwiftUI .transition)
+	•	Kéo-thả trực quan, hỗ trợ cảm ứng
